@@ -7,6 +7,11 @@
     'use strict';
 
     // ============================================
+    // Configuration
+    // ============================================
+    const DEBUG_MODE = false; // Set to true for development, false for production
+    
+    // ============================================
     // Device Detection and Adaptive Features
     // ============================================
     const DeviceDetector = {
@@ -14,7 +19,7 @@
             this.detectDevice();
             this.detectOrientation();
             this.addDeviceClasses();
-            this.logDeviceInfo();
+            if (DEBUG_MODE) this.logDeviceInfo();
         },
 
         detectDevice: function() {
@@ -72,13 +77,15 @@
         },
 
         logDeviceInfo: function() {
-            console.log('🖥️ Device Information:');
-            console.log(`- OS: ${this.getOSName()}`);
-            console.log(`- Type: ${this.getDeviceType()}`);
-            console.log(`- Browser: ${this.getBrowserName()}`);
-            console.log(`- Touch: ${this.hasTouch ? 'Yes' : 'No'}`);
-            console.log(`- Orientation: ${this.isPortrait ? 'Portrait' : 'Landscape'}`);
-            console.log(`- Screen: ${window.innerWidth}x${window.innerHeight}`);
+            if (DEBUG_MODE) {
+                console.log('🖥️ Device Information:');
+                console.log(`- OS: ${this.getOSName()}`);
+                console.log(`- Type: ${this.getDeviceType()}`);
+                console.log(`- Browser: ${this.getBrowserName()}`);
+                console.log(`- Touch: ${this.hasTouch ? 'Yes' : 'No'}`);
+                console.log(`- Orientation: ${this.isPortrait ? 'Portrait' : 'Landscape'}`);
+                console.log(`- Screen: ${window.innerWidth}x${window.innerHeight}`);
+            }
         },
 
         getOSName: function() {
@@ -347,7 +354,9 @@
                 body.classList.add('orientation-landscape');
             }
             
-            console.log(`📱 Orientation changed to: ${DeviceDetector.isPortrait ? 'Portrait' : 'Landscape'}`);
+            if (DEBUG_MODE) {
+                console.log(`📱 Orientation changed to: ${DeviceDetector.isPortrait ? 'Portrait' : 'Landscape'}`);
+            }
         }
     };
 
@@ -381,10 +390,10 @@
             
             if (Math.abs(diff) > swipeThreshold) {
                 if (diff > 0) {
-                    console.log('⬅️ Swiped left');
+                    if (DEBUG_MODE) console.log('⬅️ Swiped left');
                     // Handle left swipe
                 } else {
-                    console.log('➡️ Swiped right');
+                    if (DEBUG_MODE) console.log('➡️ Swiped right');
                     // Handle right swipe
                 }
             }
@@ -402,13 +411,15 @@
         },
 
         observePerformance: function() {
-            const observer = new PerformanceObserver((list) => {
-                for (const entry of list.getEntries()) {
-                    console.log(`⚡ ${entry.name}: ${entry.duration.toFixed(2)}ms`);
-                }
-            });
-            
-            observer.observe({ entryTypes: ['measure', 'navigation'] });
+            if (DEBUG_MODE) {
+                const observer = new PerformanceObserver((list) => {
+                    for (const entry of list.getEntries()) {
+                        console.log(`⚡ ${entry.name}: ${entry.duration.toFixed(2)}ms`);
+                    }
+                });
+                
+                observer.observe({ entryTypes: ['measure', 'navigation'] });
+            }
         }
     };
 
@@ -441,7 +452,7 @@
     // Initialize All Enhancements
     // ============================================
     function initializeEnhancements() {
-        console.log('🚀 Initializing Ecolify University Enhancements...');
+        if (DEBUG_MODE) console.log('🚀 Initializing Ecolify University Enhancements...');
         
         DeviceDetector.init();
         PageLoader.init();
@@ -466,7 +477,7 @@
         PerformanceMonitor.init();
         AdaptiveImages.init();
         
-        console.log('✅ All enhancements initialized successfully!');
+        if (DEBUG_MODE) console.log('✅ All enhancements initialized successfully!');
     }
 
     // Start initialization
