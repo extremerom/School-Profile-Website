@@ -100,7 +100,9 @@ a.menu-link { display: none; }
     font-size: 36px;
     color: #fff;
     padding-right: 30px;
-    padding-top: 15px;
+    padding-top: 22px;
+    line-height: 80px;
+    height: 80px;
   }
   nav[role="navigation"] {
     clear: both;
@@ -400,6 +402,7 @@ section.features .col-4 {
 .features-post {
   position: relative;
   margin-bottom: 0px;
+  min-height: 250px;
 }
 
 .features-thumb {
@@ -433,6 +436,9 @@ section.features .col-4 {
     color: #fff;
     letter-spacing: 1px;
     margin-bottom: 0px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
 }
 
 .features-content h4 i {
@@ -823,6 +829,9 @@ section.courses {
 section.courses .item img {
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
 }
 
 section.courses .item .down-content {
@@ -830,6 +839,7 @@ section.courses .item .down-content {
     background-color: #fff;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
+    min-height: 120px;
 }
 
 section.courses .item .down-content h4 {
@@ -840,6 +850,10 @@ section.courses .item .down-content h4 {
     font-weight: 700;
     margin-top: 0px;
     margin-bottom: 20px;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 section.courses .item .down-content p {
@@ -1603,7 +1617,12 @@ footer p a:hover {
 @media screen and (max-width: 950px) {
   .main-menu { padding-right: 0!important; }
   .main-header .logo {
-    line-height: 73px;
+    line-height: 80px;
+    padding-left: 20px;
+  }
+  .main-header .logo a {
+    font-size: 24px;
+    white-space: nowrap;
   }
   .main-menu li {
     display: block;
@@ -1632,6 +1651,16 @@ footer p a:hover {
 }
 
 @media screen and (max-width: 767px) {
+  .main-header .logo {
+    padding-left: 15px;
+  }
+  .main-header .logo a {
+    font-size: 20px;
+  }
+  a.menu-link {
+    padding-right: 15px;
+    font-size: 30px;
+  }
   footer p {
     font-size: 12px;
     font-weight: 600;
