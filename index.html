@@ -367,7 +367,7 @@ https://templatemo.com/tm-557-grad-school
               // Send to support email
               const subject = `Contact from ${name}`;
               const body = `Name: ${name}%0AEmail: ${email}%0A%0AMessage:%0A${message}`;
-              const mailtoUrl = `mailto:support@ecolifylat.me?subject=${encodeURIComponent(subject)}&body=${body}`;
+              const mailtoUrl = `mailto:support@ecolifylat.me?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
               
               window.location.href = mailtoUrl;
             }); 
