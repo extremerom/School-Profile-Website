@@ -1054,12 +1054,12 @@ body {
     }
     
     /* Better spacing for features on mobile */
-    .features {
-        padding: 30px 0 !important;
+    section.features {
+        padding: 30px 0;
     }
     
-    section.courses {
-        padding: 0px 15px 80px 15px !important;
+    section.courses.section {
+        padding: 0px 15px 80px 15px;
     }
 }
 
@@ -1098,14 +1098,14 @@ body {
         filter: none;
     }
     
-    .owl-carousel .item:hover .down-content {
-        background: #fff !important;
+    section.courses .owl-carousel .item:hover .down-content {
+        background: #fff;
         transform: none;
     }
     
-    .owl-carousel .item:hover .down-content h4 {
+    section.courses .owl-carousel .item:hover .down-content h4 {
         transform: none;
-        color: #1e1e1e !important;
+        color: #1e1e1e;
         text-shadow: none;
     }
     

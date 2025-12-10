@@ -40,9 +40,6 @@ p {
 .section-heading {
     text-align: center;
     margin-bottom: 70px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .section-heading h2:before {
@@ -853,7 +850,6 @@ section.courses .item .down-content h4 {
     font-weight: 700;
     margin-top: 0px;
     margin-bottom: 20px;
-    text-align: center;
     min-height: 40px;
     display: flex;
     align-items: center;
