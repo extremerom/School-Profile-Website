@@ -21,6 +21,28 @@
 }
 
 /* ============================================
+   Fix for White Space Issues
+   ============================================ */
+* {
+    box-sizing: border-box;
+}
+
+section {
+    overflow: hidden;
+}
+
+.container,
+.container-fluid {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* ============================================
    Smooth Scrolling
    ============================================ */
 html {
@@ -253,11 +275,17 @@ body {
 /* ============================================
    Video Section Enhancements
    ============================================ */
+.section.video {
+    background-color: #1e1e1e !important;
+    padding: 80px 0;
+}
+
 .video-item {
     border-radius: 15px;
     overflow: hidden;
     box-shadow: var(--shadow-md);
     transition: all var(--transition-normal);
+    background-color: transparent;
 }
 
 .video-item:hover {
@@ -265,8 +293,29 @@ body {
     box-shadow: var(--shadow-lg);
 }
 
+.video-item figure {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+}
+
 .video-item iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    border: none;
     border-radius: 12px;
+}
+
+.video-caption {
+    background: transparent;
+    padding: 15px 0;
 }
 
 /* ============================================
@@ -419,7 +468,7 @@ body {
    ============================================ */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
     .section-heading h2 {
-        font-size: 16px;
+        font-size: 24px;
         padding: 12px 18px;
     }
     
@@ -449,7 +498,7 @@ body {
     }
     
     .section-heading h2 {
-        font-size: 14px;
+        font-size: 20px;
         padding: 10px 15px;
         margin-top: 50px;
     }
@@ -481,8 +530,16 @@ body {
         height: 300px;
     }
     
-    .video-item iframe {
-        height: 250px;
+    .video-item figure {
+        padding-bottom: 56.25%; /* Mantener aspect ratio 16:9 */
+    }
+    
+    .section.video {
+        padding: 40px 0;
+    }
+    
+    .video-item {
+        margin-top: 20px;
     }
 }
 

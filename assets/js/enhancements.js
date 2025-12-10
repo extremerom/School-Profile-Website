@@ -355,6 +355,9 @@
     // Touch Gestures (for mobile/tablet)
     // ============================================
     const TouchGestures = {
+        touchStartX: 0,
+        touchEndX: 0,
+        
         init: function() {
             if (DeviceDetector.hasTouch) {
                 this.addSwipeSupport();
@@ -362,22 +365,19 @@
         },
 
         addSwipeSupport: function() {
-            let touchStartX = 0;
-            let touchEndX = 0;
-            
             document.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
+                this.touchStartX = e.changedTouches[0].screenX;
             });
             
             document.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
+                this.touchEndX = e.changedTouches[0].screenX;
                 this.handleSwipe();
             });
         },
 
         handleSwipe: function() {
             const swipeThreshold = 50;
-            const diff = touchStartX - touchEndX;
+            const diff = this.touchStartX - this.touchEndX;
             
             if (Math.abs(diff) > swipeThreshold) {
                 if (diff > 0) {
