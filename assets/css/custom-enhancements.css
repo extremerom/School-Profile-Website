@@ -633,6 +633,7 @@ body {
     height: 200%;
     background: radial-gradient(circle, rgba(240, 147, 251, 0.12) 0%, transparent 70%);
     animation: rotateBackground 20s linear infinite;
+    will-change: transform;
 }
 
 .contact-info::after {
@@ -1107,6 +1108,13 @@ select:focus {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
+    }
+    
+    /* Disable continuous animations for better performance */
+    .contact-info::before,
+    .features-content i,
+    .main-banner .main-button a {
+        animation: none !important;
     }
 }
 
