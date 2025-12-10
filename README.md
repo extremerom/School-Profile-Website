@@ -1,7 +1,19 @@
 # Give a star if you are helped by this repo 🙏
 
-# School-Profile-Website
-This is a school profile for SDN 2 Ampeldento, Malang
+# Ecolify University Website
+This is the official website for Ecolify University, Boston, Massachusetts
+
+## About Ecolify University
+Ecolify University is a leading educational institution in the United States, committed to providing quality education and fostering student development.
+
+### Contact Information
+- **Address:** 123 Commonwealth Avenue, Boston, MA 02215
+- **Email:** support@ecolifylat.me
+- **Phone:** (729) 569-0000
+- **Director:** Eduardo Alvarado Bucio (eduardo@ecolifylat.me)
+
+## Deployment
+This website is automatically deployed to GitHub Pages using GitHub Actions. Any push to the main/master branch will trigger a deployment.
 
 Link : [website](http://tiny.cc/schl-profile-web)
 
