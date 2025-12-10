@@ -1004,8 +1004,8 @@ body {
         margin-bottom: 10px;
     }
     
-    #tabs ul li a {
-        padding: 12px 20px !important;
+    section.why-us #tabs ul li a {
+        padding: 12px 20px;
         font-size: 12px;
     }
     
@@ -1023,7 +1023,7 @@ body {
     }
     
     .video-item figure {
-        padding-bottom: 56.25%; /* Mantener aspect ratio 16:9 */
+        padding-bottom: 56.25%; /* Maintain 16:9 aspect ratio */
     }
     
     .section.video {
