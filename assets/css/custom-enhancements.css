@@ -1,23 +1,35 @@
 /* 
  * Ecolify University - Custom Design Enhancements
  * Modern responsive design with animations and device detection
+ * Redesigned with modern blue/purple gradient theme
  */
 
 /* ============================================
    CSS Variables for Easy Theming
    ============================================ */
 :root {
-    --primary-color: #2c5f2d;
-    --secondary-color: #97bc62;
-    --accent-color: #f5a425;
-    --text-dark: #333;
+    --primary-color: #667eea;
+    --primary-dark: #5568d3;
+    --secondary-color: #764ba2;
+    --accent-color: #f093fb;
+    --accent-light: #fbc2eb;
+    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-subtle: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    --text-dark: #2d3748;
     --text-light: #fff;
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
-    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
-    --transition-fast: 0.2s ease;
-    --transition-normal: 0.3s ease;
-    --transition-slow: 0.5s ease;
+    --text-muted: #718096;
+    --bg-light: #f7fafc;
+    --shadow-sm: 0 2px 8px rgba(102, 126, 234, 0.15);
+    --shadow-md: 0 4px 20px rgba(102, 126, 234, 0.2);
+    --shadow-lg: 0 10px 40px rgba(102, 126, 234, 0.3);
+    --shadow-colored: 0 10px 40px rgba(240, 147, 251, 0.4);
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --border-radius-sm: 8px;
+    --border-radius-md: 12px;
+    --border-radius-lg: 20px;
 }
 
 /* ============================================
@@ -57,24 +69,50 @@ body {
    Enhanced Header with Backdrop Blur
    ============================================ */
 .main-header {
-    backdrop-filter: blur(10px);
-    background-color: rgba(0, 0, 0, 0.7) !important;
+    backdrop-filter: blur(15px) saturate(180%);
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%) !important;
     transition: all var(--transition-normal);
     box-shadow: var(--shadow-md);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .main-header.scrolled {
-    background-color: rgba(0, 0, 0, 0.9) !important;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.98) 0%, rgba(118, 75, 162, 0.98) 100%) !important;
+    box-shadow: var(--shadow-lg);
 }
 
 .logo a {
     transition: all var(--transition-fast);
     display: inline-block;
+    background: linear-gradient(135deg, #ffffff 0%, #f093fb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+}
+
+.logo a::before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 40px;
+    background: var(--gradient-secondary);
+    border-radius: 3px;
+    opacity: 0;
+    transition: all var(--transition-normal);
 }
 
 .logo a:hover {
-    transform: scale(1.05);
-    text-shadow: 0 0 20px rgba(245, 164, 37, 0.5);
+    transform: scale(1.08) translateY(-2px);
+    filter: drop-shadow(0 4px 12px rgba(240, 147, 251, 0.6));
+}
+
+.logo a:hover::before {
+    opacity: 1;
+    left: -15px;
 }
 
 /* ============================================
@@ -83,6 +121,22 @@ body {
 .main-nav ul li a {
     position: relative;
     transition: all var(--transition-normal);
+    overflow: hidden;
+}
+
+.main-nav ul li a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(240, 147, 251, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.main-nav ul li a:hover::before {
+    left: 100%;
 }
 
 .main-nav ul li a::after {
@@ -91,28 +145,35 @@ body {
     bottom: -5px;
     left: 50%;
     width: 0;
-    height: 2px;
-    background: var(--accent-color);
+    height: 3px;
+    background: var(--gradient-secondary);
+    border-radius: 2px;
     transition: all var(--transition-normal);
     transform: translateX(-50%);
+    box-shadow: 0 2px 8px rgba(240, 147, 251, 0.6);
 }
 
 .main-nav ul li a:hover::after,
 .main-nav ul li.active a::after {
-    width: 80%;
+    width: 85%;
+}
+
+.main-nav ul li a:hover {
+    color: var(--accent-light) !important;
+    transform: translateY(-2px);
 }
 
 /* ============================================
    Animated Hero Section
    ============================================ */
 .main-banner .caption {
-    animation: fadeInUp 1s ease;
+    animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(50px);
+        transform: translateY(60px);
     }
     to {
         opacity: 1;
@@ -121,12 +182,52 @@ body {
 }
 
 .main-banner h6 {
-    animation: fadeIn 1.5s ease;
+    animation: fadeInScale 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--gradient-secondary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600 !important;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .main-banner h2 {
-    animation: fadeInUp 1.2s ease;
-    text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.5);
+    animation: fadeInUp 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-shadow: 0 4px 30px rgba(102, 126, 234, 0.5),
+                 0 8px 60px rgba(118, 75, 162, 0.3);
+    position: relative;
+}
+
+.main-banner h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: var(--gradient-secondary);
+    border-radius: 2px;
+    animation: expandWidth 1s 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes expandWidth {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100px;
+    }
 }
 
 @keyframes fadeIn {
@@ -138,23 +239,75 @@ body {
     }
 }
 
+.main-banner .main-button a {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(240, 147, 251, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 0 15px rgba(240, 147, 251, 0);
+    }
+}
+
 /* ============================================
    Enhanced Feature Cards
    ============================================ */
 .features-post {
     transition: all var(--transition-normal);
-    border-radius: 15px;
+    border-radius: var(--border-radius-lg);
     overflow: hidden;
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-md);
+    position: relative;
+}
+
+.features-post::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    z-index: 0;
+}
+
+.features-post:hover::before {
+    opacity: 1;
 }
 
 .features-post:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: var(--shadow-colored);
 }
 
 .features-content {
     position: relative;
+    z-index: 1;
+}
+
+.content-show {
+    position: relative;
+}
+
+.content-show::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 3px;
+    background: var(--gradient-secondary);
+    transition: width var(--transition-normal);
+    border-radius: 2px;
+}
+
+.features-post:hover .content-show::before {
+    width: 60px;
 }
 
 .content-show h4 {
@@ -162,26 +315,61 @@ body {
 }
 
 .features-post:hover .content-show h4 {
-    transform: scale(1.05);
+    transform: scale(1.08) translateX(5px);
+    color: #fff !important;
+}
+
+.features-post:hover .content-show h4 i {
+    animation: bounce 0.6s;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
 /* ============================================
    Animated Section Headings
    ============================================ */
 .section-heading h2 {
-    animation: slideInFromTop 0.8s ease;
+    animation: slideInFromTop 1s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+    background: var(--gradient-primary);
+    border: 2px solid rgba(240, 147, 251, 0.3) !important;
+    box-shadow: var(--shadow-md);
+    border-radius: var(--border-radius-md);
+}
+
+.section-heading h2::before {
+    background: var(--gradient-secondary) !important;
+}
+
+.section-heading h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -15px;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: var(--gradient-secondary);
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(240, 147, 251, 0.6);
 }
 
 @keyframes slideInFromTop {
     from {
         opacity: 0;
-        transform: translateY(-30px);
+        transform: translateY(-40px) scale(0.9);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
 }
 
@@ -193,12 +381,16 @@ body {
 }
 
 #tabs ul li:hover {
-    transform: translateY(-3px);
+    transform: translateY(-5px) scale(1.02);
 }
 
 #tabs ul li a {
     position: relative;
     overflow: hidden;
+    padding: 15px 25px !important;
+    border-radius: var(--border-radius-sm);
+    background: var(--gradient-subtle);
+    margin: 0 5px;
 }
 
 #tabs ul li a::before {
@@ -208,16 +400,37 @@ body {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s;
+    background: linear-gradient(90deg, transparent, rgba(240, 147, 251, 0.3), transparent);
+    transition: left 0.6s;
 }
 
 #tabs ul li:hover a::before {
     left: 100%;
 }
 
+#tabs ul .ui-tabs-active a {
+    background: var(--gradient-primary) !important;
+    box-shadow: var(--shadow-md);
+    transform: scale(1.05);
+}
+
 .tabs-content article {
-    animation: fadeInSlide 0.5s ease;
+    animation: fadeInSlideRotate 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--gradient-subtle);
+    padding: 30px;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+@keyframes fadeInSlideRotate {
+    from {
+        opacity: 0;
+        transform: translateX(-30px) rotateY(-10deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) rotateY(0);
+    }
 }
 
 @keyframes fadeInSlide {
@@ -231,45 +444,123 @@ body {
     }
 }
 
+.tabs-content img {
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+}
+
+.tabs-content img:hover {
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: var(--shadow-lg);
+}
+
 /* ============================================
    Course Cards with Hover Effects
    ============================================ */
 .owl-carousel .item {
     transition: all var(--transition-normal);
-    border-radius: 12px;
+    border-radius: var(--border-radius-lg);
     overflow: hidden;
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-md);
+    position: relative;
+}
+
+.owl-carousel .item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.owl-carousel .item:hover::before {
+    opacity: 0.15;
 }
 
 .owl-carousel .item:hover {
-    transform: scale(1.05) translateY(-5px);
-    box-shadow: var(--shadow-lg);
+    transform: scale(1.08) translateY(-10px) rotate(2deg);
+    box-shadow: var(--shadow-colored);
 }
 
 .owl-carousel .item img {
     transition: all var(--transition-slow);
+    position: relative;
 }
 
 .owl-carousel .item:hover img {
-    transform: scale(1.1);
-    filter: brightness(1.1);
+    transform: scale(1.15) rotate(-2deg);
+    filter: brightness(1.2) contrast(1.1);
 }
 
 .down-content {
     transition: all var(--transition-normal);
+    position: relative;
+    z-index: 2;
 }
 
 .owl-carousel .item:hover .down-content {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: var(--gradient-primary) !important;
+    transform: translateY(-5px);
 }
 
 .down-content h4 {
     transition: all var(--transition-fast);
+    position: relative;
+}
+
+.down-content h4::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--gradient-secondary);
+    transition: width var(--transition-normal);
+    border-radius: 2px;
 }
 
 .owl-carousel .item:hover .down-content h4 {
-    transform: scale(1.05);
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    transform: scale(1.08) translateX(5px);
+    color: #fff !important;
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+}
+
+.owl-carousel .item:hover .down-content h4::after {
+    width: 50px;
+}
+
+/* Add shimmer effect */
+.owl-carousel .item::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 70%
+    );
+    transform: rotate(45deg);
+    transition: all 0.8s;
+    opacity: 0;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.owl-carousel .item:hover::after {
+    left: 100%;
+    opacity: 1;
 }
 
 /* ============================================
@@ -322,17 +613,40 @@ body {
    Enhanced Contact Form
    ============================================ */
 .contact-info {
-    animation: fadeInLeft 0.8s ease;
-    background: linear-gradient(135deg, rgba(44, 95, 45, 0.1), rgba(151, 188, 98, 0.1));
-    padding: 25px;
-    border-radius: 12px;
-    border-left: 4px solid var(--secondary-color);
+    animation: fadeInLeft 1s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--gradient-subtle);
+    padding: 30px;
+    border-radius: var(--border-radius-lg);
+    border-left: 5px solid var(--primary-color);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-info::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(240, 147, 251, 0.1) 0%, transparent 70%);
+    animation: rotateBackground 20s linear infinite;
+}
+
+@keyframes rotateBackground {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes fadeInLeft {
     from {
         opacity: 0;
-        transform: translateX(-30px);
+        transform: translateX(-40px);
     }
     to {
         opacity: 1;
@@ -340,33 +654,56 @@ body {
     }
 }
 
+.contact-info h4 {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+}
+
 .contact-info p {
     transition: all var(--transition-fast);
-    padding: 5px 0;
+    padding: 8px 0;
+    position: relative;
+    z-index: 1;
+    border-bottom: 1px solid rgba(102, 126, 234, 0.1);
 }
 
 .contact-info p:hover {
-    transform: translateX(5px);
+    transform: translateX(10px);
+    color: var(--primary-color) !important;
+    border-bottom-color: var(--accent-color);
+}
+
+.contact-info p strong {
     color: var(--secondary-color);
 }
 
 #contact .form-control {
     transition: all var(--transition-normal);
-    border: 2px solid transparent;
-    border-radius: 8px;
+    border: 2px solid rgba(102, 126, 234, 0.2);
+    border-radius: var(--border-radius-md);
+    background: rgba(255, 255, 255, 0.05);
 }
 
 #contact .form-control:focus {
-    border-color: var(--secondary-color);
-    box-shadow: 0 0 15px rgba(151, 188, 98, 0.3);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.3), 0 0 40px rgba(240, 147, 251, 0.2);
     transform: scale(1.02);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 #contact .button {
     transition: all var(--transition-normal);
-    border-radius: 8px;
+    border-radius: var(--border-radius-md);
     position: relative;
     overflow: hidden;
+    background: var(--gradient-primary) !important;
+    border: none;
+    box-shadow: var(--shadow-md);
 }
 
 #contact .button::before {
@@ -377,34 +714,63 @@ body {
     width: 0;
     height: 0;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.3);
     transform: translate(-50%, -50%);
     transition: width 0.6s, height 0.6s;
 }
 
 #contact .button:hover::before {
-    width: 300px;
-    height: 300px;
+    width: 350px;
+    height: 350px;
 }
 
 #contact .button:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: var(--shadow-colored);
+    background: var(--gradient-secondary) !important;
+}
+
+#contact .button:active {
+    transform: translateY(-2px) scale(1.02);
 }
 
 /* ============================================
    Map Container Enhancement
    ============================================ */
 #map {
-    border-radius: 12px;
+    border-radius: var(--border-radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-md);
     transition: all var(--transition-normal);
+    border: 3px solid rgba(102, 126, 234, 0.3);
+    position: relative;
+}
+
+#map::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: var(--border-radius-lg);
+    padding: 3px;
+    background: var(--gradient-primary);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    pointer-events: none;
+}
+
+#map:hover::before {
+    opacity: 1;
 }
 
 #map:hover {
-    box-shadow: var(--shadow-lg);
-    transform: scale(1.02);
+    box-shadow: var(--shadow-colored);
+    transform: scale(1.03) translateY(-5px);
 }
 
 /* ============================================
@@ -430,7 +796,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: var(--gradient-primary);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -461,6 +827,74 @@ body {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+/* ============================================
+   Additional Modern Enhancements
+   ============================================ */
+
+/* Smooth gradient text for headings */
+.section h2,
+.section h4,
+.down-content h4 {
+    position: relative;
+}
+
+/* Floating animation for icons */
+.features-content i {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Modern scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: linear-gradient(180deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gradient-primary);
+    border-radius: 6px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gradient-secondary);
+}
+
+/* Selection styling */
+::selection {
+    background: var(--primary-color);
+    color: white;
+}
+
+::-moz-selection {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Backdrop filter for sections */
+.section {
+    position: relative;
+}
+
+/* Modern card shadows on mobile */
+@media (hover: none) {
+    .features-post,
+    .owl-carousel .item {
+        box-shadow: var(--shadow-md);
+    }
 }
 
 /* ============================================
