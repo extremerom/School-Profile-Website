@@ -949,6 +949,7 @@ body {
     
     .features-post {
         margin-bottom: 30px;
+        min-height: 220px;
     }
     
     .contact-info {
@@ -957,6 +958,11 @@ body {
     
     .col-md-6 {
         margin-bottom: 20px;
+    }
+    
+    .features-content h4 {
+        font-size: 15px;
+        min-height: 55px;
     }
 }
 
@@ -985,11 +991,22 @@ body {
     
     .features-post {
         margin-bottom: 20px;
+        min-height: 200px;
+    }
+    
+    .features-content h4 {
+        font-size: 14px;
+        min-height: 50px;
     }
     
     #tabs ul li {
         display: block;
         margin-bottom: 10px;
+    }
+    
+    #tabs ul li a {
+        padding: 12px 20px !important;
+        font-size: 12px;
     }
     
     .contact-info {
@@ -1016,6 +1033,34 @@ body {
     .video-item {
         margin-top: 20px;
     }
+    
+    /* Fix courses section on mobile */
+    section.courses .owl-carousel .item {
+        margin-bottom: 20px;
+    }
+    
+    section.courses .item .down-content {
+        padding: 20px;
+        min-height: 100px;
+    }
+    
+    section.courses .item .down-content h4 {
+        font-size: 14px;
+        min-height: 50px;
+    }
+    
+    section.courses .item img {
+        height: 200px;
+    }
+    
+    /* Better spacing for features on mobile */
+    .features {
+        padding: 30px 0 !important;
+    }
+    
+    section.courses {
+        padding: 0px 15px 80px 15px !important;
+    }
 }
 
 /* ============================================
@@ -1040,10 +1085,28 @@ body {
     /* Disable hover effects on touch devices */
     .features-post:hover {
         transform: none;
+        box-shadow: var(--shadow-md);
     }
     
     .owl-carousel .item:hover {
         transform: none;
+        box-shadow: var(--shadow-md);
+    }
+    
+    .owl-carousel .item:hover img {
+        transform: none;
+        filter: none;
+    }
+    
+    .owl-carousel .item:hover .down-content {
+        background: #fff !important;
+        transform: none;
+    }
+    
+    .owl-carousel .item:hover .down-content h4 {
+        transform: none;
+        color: #1e1e1e !important;
+        text-shadow: none;
     }
     
     /* Add tap highlight */
